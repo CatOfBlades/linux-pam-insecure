@@ -74,15 +74,15 @@ pam_sm_open_session(pam_handle_t *pamh, int flags, int argc, const char **argv)
 
 	retval = pam_get_item(pamh, PAM_USER, (const void **) &user_name);
 	if (user_name == NULL || *user_name == '\0' || retval != PAM_SUCCESS) {
-		pam_syslog(pamh, LOG_ERR,
-			"open_session - error recovering username");
+		// pam_syslog(pamh, LOG_ERR,
+		// 	"open_session - error recovering username");
 		return PAM_SESSION_ERR;		/* How did we get authenticated with
 						   no username?! */
 	}
 	retval = pam_get_item(pamh, PAM_SERVICE, (const void **) &service);
 	if (service == NULL || *service == '\0' || retval != PAM_SUCCESS) {
-		pam_syslog(pamh, LOG_CRIT,
-			"open_session - error recovering service");
+		// pam_syslog(pamh, LOG_CRIT,
+		// 	"open_session - error recovering service");
 		return PAM_SESSION_ERR;
 	}
 	login_name = pam_modutil_getlogin(pamh);
@@ -98,7 +98,7 @@ pam_sm_open_session(pam_handle_t *pamh, int flags, int argc, const char **argv)
 		else {
 			pam_sprintf(uid, "%u", pwd->pw_uid);
 		}
-		pam_syslog(pamh, LOG_INFO, "session opened for user %s(uid=%s) by %s(uid=%lu)", user_name, uid, login_name, (unsigned long)getuid());
+		// pam_syslog(pamh, LOG_INFO, "session opened for user %s(uid=%s) by %s(uid=%lu)", user_name, uid, login_name, (unsigned long)getuid());
 	}
 	return PAM_SUCCESS;
 }
@@ -116,20 +116,20 @@ pam_sm_close_session(pam_handle_t *pamh, int flags, int argc, const char **argv)
 
 	retval = pam_get_item(pamh, PAM_USER, (const void **) &user_name);
 	if (user_name == NULL || *user_name == '\0' || retval != PAM_SUCCESS) {
-		pam_syslog(pamh, LOG_ERR,
-			"close_session - error recovering username");
+		// pam_syslog(pamh, LOG_ERR,
+		// 	"close_session - error recovering username");
 		return PAM_SESSION_ERR;		/* How did we get authenticated with
 						   no username?! */
 	}
 	retval = pam_get_item(pamh, PAM_SERVICE, (const void **) &service);
 	if (service == NULL || *service == '\0' || retval != PAM_SUCCESS) {
-		pam_syslog(pamh, LOG_CRIT,
-			"close_session - error recovering service");
+		// pam_syslog(pamh, LOG_CRIT,
+		// 	"close_session - error recovering service");
 		return PAM_SESSION_ERR;
 	}
-	if (off (UNIX_QUIET, ctrl))
-		pam_syslog(pamh, LOG_INFO, "session closed for user %s",
-			user_name);
+	// if (off (UNIX_QUIET, ctrl))
+	// 	pam_syslog(pamh, LOG_INFO, "session closed for user %s",
+	// 		user_name);
 
 	return PAM_SUCCESS;
 }

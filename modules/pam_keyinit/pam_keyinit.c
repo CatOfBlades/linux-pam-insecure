@@ -230,8 +230,8 @@ static int do_keyinit(pam_handle_t *pamh, int argc, const char **argv, int error
 
 	pw = pam_modutil_getpwnam(pamh, username);
 	if (!pw) {
-		pam_syslog(pamh, LOG_NOTICE, "Unable to look up user \"%s\"\n",
-			   username);
+		// pam_syslog(pamh, LOG_NOTICE, "Unable to look up user \"%s\"\n",
+		// 	   username);
 		return PAM_USER_UNKNOWN;
 	}
 

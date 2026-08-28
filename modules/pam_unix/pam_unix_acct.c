@@ -203,9 +203,9 @@ pam_sm_acct_mgmt(pam_handle_t *pamh, int flags, int argc, const char **argv)
 	uname = void_uname;
 	D(("user = `%s'", uname));
 	if (retval != PAM_SUCCESS || uname == NULL) {
-		pam_syslog(pamh, LOG_ERR,
-			 "could not identify user (from uid=%lu)",
-			 (unsigned long int)getuid());
+		// pam_syslog(pamh, LOG_ERR,
+		// 	 "could not identify user (from uid=%lu)",
+		// 	 (unsigned long int)getuid());
 		return PAM_USER_UNKNOWN;
 	}
 
@@ -226,9 +226,9 @@ pam_sm_acct_mgmt(pam_handle_t *pamh, int flags, int argc, const char **argv)
 
 	switch (retval) {
 	case PAM_ACCT_EXPIRED:
-		pam_syslog(pamh, LOG_NOTICE,
-			"account %s has expired (account expired)",
-			uname);
+		// pam_syslog(pamh, LOG_NOTICE,
+		// 	"account %s has expired (account expired)",
+		// 	uname);
 		_make_remark(pamh, ctrl, PAM_ERROR_MSG,
 			_("Your account has expired; please contact your system administrator."));
 		break;
@@ -248,9 +248,9 @@ pam_sm_acct_mgmt(pam_handle_t *pamh, int flags, int argc, const char **argv)
 		}
 		break;
 	case PAM_AUTHTOK_EXPIRED:
-		pam_syslog(pamh, LOG_NOTICE,
-			"account %s has expired (failed to change password)",
-			uname);
+		// pam_syslog(pamh, LOG_NOTICE,
+		// 	"account %s has expired (failed to change password)",
+		// 	uname);
 		_make_remark(pamh, ctrl, PAM_ERROR_MSG,
 			_("Your account has expired; please contact your system administrator."));
 		break;

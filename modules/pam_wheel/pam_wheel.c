@@ -107,7 +107,7 @@ perform_check (pam_handle_t *pamh, int ctrl, const char *use_group)
     pwd = pam_modutil_getpwnam (pamh, username);
     if (!pwd) {
         if (ctrl & PAM_DEBUG_ARG) {
-            pam_syslog(pamh, LOG_NOTICE, "unknown user %s", username);
+            // pam_syslog(pamh, LOG_NOTICE, "unknown user %s", username);
         }
         return PAM_USER_UNKNOWN;
     }
@@ -218,13 +218,13 @@ perform_check (pam_handle_t *pamh, int ctrl, const char *use_group)
 
     if (ctrl & PAM_DEBUG_ARG) {
 	if (retval == PAM_IGNORE) {
-	    pam_syslog(pamh, LOG_NOTICE,
-		       "Ignoring access request '%s' for '%s'",
-		       fromsu, username);
+	    // pam_syslog(pamh, LOG_NOTICE,
+		   //     "Ignoring access request '%s' for '%s'",
+		   //     fromsu, username);
 	} else {
-	    pam_syslog(pamh, LOG_NOTICE, "Access %s to '%s' for '%s'",
-		       (retval != PAM_SUCCESS) ? "denied":"granted",
-		       fromsu, username);
+	    // pam_syslog(pamh, LOG_NOTICE, "Access %s to '%s' for '%s'",
+		   //     (retval != PAM_SUCCESS) ? "denied":"granted",
+		   //     fromsu, username);
 	}
     }
 

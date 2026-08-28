@@ -262,7 +262,7 @@ check_logins (pam_handle_t *pamh, const char *name, int limit, int ctrl,
     if (limit < 0)
         return 0; /* no limits imposed */
     if (limit == 0) /* maximum 0 logins ? */ {
-        pam_syslog(pamh, LOG_WARNING, "No logins allowed for '%s'", name);
+        // pam_syslog(pamh, LOG_WARNING, "No logins allowed for '%s'", name);
         return LOGIN_ERR;
     }
 
@@ -381,9 +381,9 @@ check_logins (pam_handle_t *pamh, const char *name, int limit, int ctrl,
 	    }
 	    if (kill(ut->ut_pid, 0) == -1 && errno == ESRCH) {
 		/* process does not exist anymore */
-		pam_syslog(pamh, LOG_INFO,
-			   "Stale utmp entry (pid %d) for '%s' ignored",
-			   ut->ut_pid, user);
+		// pam_syslog(pamh, LOG_INFO,
+		// 	   "Stale utmp entry (pid %d) for '%s' ignored",
+		// 	   ut->ut_pid, user);
 		continue;
 	    }
 	}
@@ -395,10 +395,10 @@ check_logins (pam_handle_t *pamh, const char *name, int limit, int ctrl,
 #endif
     if (count > limit) {
 	if (name) {
-	    pam_syslog(pamh, LOG_NOTICE,
-		       "Too many logins (max %d) for %s", limit, name);
+	    // pam_syslog(pamh, LOG_NOTICE,
+		   //     "Too many logins (max %d) for %s", limit, name);
 	} else {
-	    pam_syslog(pamh, LOG_NOTICE, "Too many system logins (max %d)", limit);
+	    // pam_syslog(pamh, LOG_NOTICE, "Too many system logins (max %d)", limit);
 	}
         return LOGIN_ERR;
     }
@@ -1351,7 +1351,7 @@ pam_sm_open_session (pam_handle_t *pamh, int flags UNUSED,
     ctrl = _pam_parse(pamh, argc, argv, pl);
     retval = pam_get_item( pamh, PAM_USER, (void*) &user_name );
     if ( user_name == NULL || retval != PAM_SUCCESS ) {
-        pam_syslog(pamh, LOG_ERR, "open_session - error recovering username");
+        // pam_syslog(pamh, LOG_ERR, "open_session - error recovering username");
         return PAM_SESSION_ERR;
     }
 

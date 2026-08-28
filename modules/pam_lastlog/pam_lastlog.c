@@ -236,11 +236,11 @@ last_login_open(pam_handle_t *pamh, int announce, uid_t uid)
 		  D(("unable to create %s file", _PATH_LASTLOG));
 		  return -1;
 	     }
-	     pam_syslog(pamh, LOG_NOTICE,
-			"file %s created", _PATH_LASTLOG);
+	  //    pam_syslog(pamh, LOG_NOTICE,
+			// "file %s created", _PATH_LASTLOG);
 	     D(("file %s created", _PATH_LASTLOG));
 	} else {
-	  pam_syslog(pamh, LOG_ERR, "unable to open %s: %m", _PATH_LASTLOG);
+	  // pam_syslog(pamh, LOG_ERR, "unable to open %s: %m", _PATH_LASTLOG);
 	  D(("unable to open %s file", _PATH_LASTLOG));
 	  return -1;
 	}

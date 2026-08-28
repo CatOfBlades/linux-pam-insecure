@@ -311,27 +311,27 @@ static void _cleanup_failures(pam_handle_t * pamh, void *fl, int err)
 						    &rhost);
 				(void) pam_get_item(pamh, PAM_TTY,
 						    &tty);
-				pam_syslog(pamh, LOG_NOTICE,
-				         "%d more authentication failure%s; "
-				         "logname=%s uid=%d euid=%d "
-				         "tty=%s ruser=%s rhost=%s "
-				         "%s%s",
-				         failure->count - 1, failure->count == 2 ? "" : "s",
-				         failure->name, failure->uid, failure->euid,
-				         tty ? (const char *)tty : "", ruser ? (const char *)ruser : "",
-				         rhost ? (const char *)rhost : "",
-				         (failure->user && failure->user[0] != '\0')
-				          ? " user=" : "",
-					 failure->user ? failure->user : ""
-				);
+				// pam_syslog(pamh, LOG_NOTICE,
+				//          "%d more authentication failure%s; "
+				//          "logname=%s uid=%d euid=%d "
+				//          "tty=%s ruser=%s rhost=%s "
+				//          "%s%s",
+				//          failure->count - 1, failure->count == 2 ? "" : "s",
+				//          failure->name, failure->uid, failure->euid,
+				//          tty ? (const char *)tty : "", ruser ? (const char *)ruser : "",
+				//          rhost ? (const char *)rhost : "",
+				//          (failure->user && failure->user[0] != '\0')
+				//           ? " user=" : "",
+				// 	 failure->user ? failure->user : ""
+				// );
 
-				if (failure->count > UNIX_MAX_RETRIES) {
-					pam_syslog(pamh, LOG_NOTICE,
-						 "service(%s) ignoring max retries; %d > %d",
-						 service == NULL ? "**unknown**" : (const char *)service,
-						 failure->count,
-						 UNIX_MAX_RETRIES);
-				}
+				// if (failure->count > UNIX_MAX_RETRIES) {
+				// 	pam_syslog(pamh, LOG_NOTICE,
+				// 		 "service(%s) ignoring max retries; %d > %d",
+				// 		 service == NULL ? "**unknown**" : (const char *)service,
+				// 		 failure->count,
+				// 		 UNIX_MAX_RETRIES);
+				// }
 			}
 		}
 		_pam_delete(failure->user);	/* tidy up */
@@ -753,13 +753,13 @@ int _unix_verify_password(pam_handle_t * pamh, const char *name
 			if (on(UNIX_AUDIT, ctrl)) {
 				/* this might be a typo and the user has given a password
 				   instead of a username. Careful with this. */
-				pam_syslog(pamh, LOG_NOTICE,
-				         "check pass; user (%s) unknown", name);
+				// pam_syslog(pamh, LOG_NOTICE,
+				//          "check pass; user (%s) unknown", name);
 			} else {
 				name = NULL;
 				if (on(UNIX_DEBUG, ctrl) || pwd == NULL) {
-				    pam_syslog(pamh, LOG_NOTICE,
-				            "check pass; user unknown");
+				    // pam_syslog(pamh, LOG_NOTICE,
+				    //         "check pass; user unknown");
 				} else {
 				    /* don't log failure as another pam module can succeed */
 				    goto cleanup;
@@ -826,19 +826,19 @@ int _unix_verify_password(pam_handle_t * pamh, const char *name
 					(void) pam_get_item(pamh, PAM_TTY,
 							    &tty);
 
-					pam_syslog(pamh, LOG_NOTICE,
-					         "authentication failure; "
-					         "logname=%s uid=%d euid=%d "
-					         "tty=%s ruser=%s rhost=%s "
-					         "%s%s",
-					         new->name, new->uid, new->euid,
-					         tty ? (const char *)tty : "",
-					         ruser ? (const char *)ruser : "",
-					         rhost ? (const char *)rhost : "",
-					         (new->user && new->user[0] != '\0')
-					          ? " user=" : "",
-					         new->user ? new->user : ""
-					);
+					// pam_syslog(pamh, LOG_NOTICE,
+					//          "authentication failure; "
+					//          "logname=%s uid=%d euid=%d "
+					//          "tty=%s ruser=%s rhost=%s "
+					//          "%s%s",
+					//          new->name, new->uid, new->euid,
+					//          tty ? (const char *)tty : "",
+					//          ruser ? (const char *)ruser : "",
+					//          rhost ? (const char *)rhost : "",
+					//          (new->user && new->user[0] != '\0')
+					//           ? " user=" : "",
+					//          new->user ? new->user : ""
+					// );
 					new->count = 1;
 				}
 

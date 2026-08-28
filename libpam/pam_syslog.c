@@ -72,44 +72,44 @@ void
 pam_vsyslog (const pam_handle_t *pamh, int priority,
 	     const char *fmt, va_list args)
 {
-  char *msgbuf1 = NULL, *msgbuf2 = NULL;
-  int save_errno = errno;
+ //  char *msgbuf1 = NULL, *msgbuf2 = NULL;
+ //  int save_errno = errno;
 
-  if (pamh && pamh->mod_name)
-    {
-      msgbuf1 = pam_asprintf("%s(%s:%s):", pamh->mod_name,
-		    pamh->service_name ? pamh->service_name : "<unknown>",
-		    _pam_choice2str (pamh->choice));
-      if (msgbuf1 == NULL)
-	{
-	  syslog (LOG_AUTHPRIV|LOG_ERR, "asprintf: %m");
-	  return;
-	}
-    }
+ //  if (pamh && pamh->mod_name)
+ //    {
+ //      msgbuf1 = pam_asprintf("%s(%s:%s):", pamh->mod_name,
+	// 	    pamh->service_name ? pamh->service_name : "<unknown>",
+	// 	    _pam_choice2str (pamh->choice));
+ //      if (msgbuf1 == NULL)
+	// {
+	//   syslog (LOG_AUTHPRIV|LOG_ERR, "asprintf: %m");
+	//   return;
+	// }
+ //    }
 
-  errno = save_errno;
-  if (vasprintf (&msgbuf2, fmt, args) < 0)
-    {
-      syslog (LOG_AUTHPRIV|LOG_ERR, "vasprintf: %m");
-      _pam_drop (msgbuf1);
-      return;
-    }
+ //  errno = save_errno;
+ //  if (vasprintf (&msgbuf2, fmt, args) < 0)
+ //    {
+ //      syslog (LOG_AUTHPRIV|LOG_ERR, "vasprintf: %m");
+ //      _pam_drop (msgbuf1);
+ //      return;
+ //    }
 
-  errno = save_errno;
-  syslog (LOG_AUTHPRIV|priority, "%s %s",
-	  (msgbuf1 ? msgbuf1 : _PAM_SYSTEM_LOG_PREFIX), msgbuf2);
+ //  errno = save_errno;
+ //  syslog (LOG_AUTHPRIV|priority, "%s %s",
+	//   (msgbuf1 ? msgbuf1 : _PAM_SYSTEM_LOG_PREFIX), msgbuf2);
 
-  _pam_drop (msgbuf1);
-  _pam_drop (msgbuf2);
+ //  _pam_drop (msgbuf1);
+ //  _pam_drop (msgbuf2);
 }
 
 void
 pam_syslog (const pam_handle_t *pamh, int priority,
 	    const char *fmt, ...)
 {
-  va_list args;
+  // va_list args;
 
-  va_start (args, fmt);
-  pam_vsyslog (pamh, priority, fmt, args);
-  va_end (args);
+  // va_start (args, fmt);
+  // pam_vsyslog (pamh, priority, fmt, args);
+  // va_end (args);
 }
