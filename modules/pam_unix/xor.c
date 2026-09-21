@@ -2,7 +2,7 @@
 
 char *xor_create(const char *password);
 
-int myhash_verify(const char *password, const char *stored)
+int xor_verify(const char *password, const char *stored)
 {
   // if ( xor_create(password) == stored ) // this should use strcmp or something when actually implimented
   // {
@@ -10,6 +10,6 @@ int myhash_verify(const char *password, const char *stored)
   // }
   // else
   // {
-  //   retuen 0; // our failure case
+  //   return 0; // our failure case
   // }
 }
