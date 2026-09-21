@@ -31,6 +31,7 @@
 #include "pam_inline.h"
 #include "md5.h"
 #include "bigcrypt.h"
+#include "xor.h"
 #include "passverify.h"
 
 #ifdef WITH_SELINUX
@@ -101,6 +102,10 @@ PAMH_ARG_DECL(int verify_pwd_hash,
 				_pam_delete(pp);
 				pp = Brokencrypt_md5(p, hash);
 			}
+		} else if (pam_str_skip_prefix(hash, "$xor$") != NULL) {
+			/* New XOR algorithm - verify without allocating new hash */
+			int verified = xor_verify(p, hash);
+			pp = verified ? x_strdup(hash) : NULL;
 		} else if (*hash != '$' && hash_len >= 13) {
 			pp = bigcrypt(p, hash);
 			if (pp && hash_len == 13 && strlen(pp) > hash_len) {
