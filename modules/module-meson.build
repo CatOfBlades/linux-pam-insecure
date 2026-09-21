@@ -428,6 +428,7 @@ if module == 'pam_unix'
               'md5_good.c',
               'md5_broken.c',
               'passverify.c',
+              'xor.c',
              ],
     c_args: ['-DHELPER_COMPILE="unix_chkpwd"'],
     link_args: exe_link_args,
