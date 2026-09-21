@@ -1,6 +1,7 @@
 // Impliments an xor encryption algorithm, the seccond worst idea to hash paswords since plaintext
 #include "xor.h"
 #include <string.h>
+#include <stdlib.h>
 
 #define XOR_KEY "\xb0\x0b\x1e\x22" //heh "boobiess"
 
