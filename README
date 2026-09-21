@@ -1,6 +1,8 @@
-Hello!
+Warning! This repo is named 'insecure' for a reason.
+There has been added functionality to allow for XOR encyrption as a password file hash function.
+This is one of the first things you learn in cybersecurity is a very bad idea.
 
-Thanks for downloading Linux-PAM.
+Thanks for downloading Linux-PAM-insecure.
 
 NOTES:
 
