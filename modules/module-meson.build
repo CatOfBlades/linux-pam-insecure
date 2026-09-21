@@ -110,6 +110,7 @@ if module == 'pam_unix'
                     'passverify.c',
                     'md5_good.c',
                     'md5_broken.c',
+                    'xor.c',
                    ]
   if enable_nis
     pam_module_src += ['yppasswd_xdr.c']
