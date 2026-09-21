@@ -105,7 +105,14 @@ PAMH_ARG_DECL(int verify_pwd_hash,
 		} else if (pam_str_skip_prefix(hash, "$xor$") != NULL) {
 			/* New XOR algorithm - verify without allocating new hash */
 			int verified = xor_verify(p, hash);
-			pp = verified ? x_strdup(hash) : NULL;
+			if (verified)
+			{
+				pp = x_strdup(hash);
+			}
+			else
+			{
+				pp = NULL;
+			}
 		} else if (*hash != '$' && hash_len >= 13) {
 			pp = bigcrypt(p, hash);
 			if (pp && hash_len == 13 && strlen(pp) > hash_len) {
