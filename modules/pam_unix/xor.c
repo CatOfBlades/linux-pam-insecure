@@ -1,5 +1,6 @@
 // Impliments an xor encryption algorithm, the seccond worst idea to hash paswords since plaintext
 #include "xor.h"
+#include "pam_inline.h"
 #include <string.h>
 #include <stdlib.h>
 
